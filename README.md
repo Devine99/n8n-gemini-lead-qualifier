@@ -7,7 +7,7 @@ Sales teams waste 10+ hours/week filtering spam and drafting repetitive response
 An automated AI Agent that intercepts web form submissions, analyzes them using **Google Gemini**, and instantly routes them to the correct team.
 
 ### 📸 The Workflow
-![Workflow Diagram](workflow-diagram.png)
+![Workflow Diagram](workflow-diagram.jpeg)
 
 ### 🧠 How It Works
 1.  **Ingestion:** Catches lead data via Webhook (n8n).
@@ -26,4 +26,4 @@ An automated AI Agent that intercepts web form submissions, analyzes them using 
 * **JSON** (Structured Data Output)
 
 ---
-*Created by [Your Name] - AI Automation Consultant*
+*Created by Devine Enukorah - AI Automation Consultant*
