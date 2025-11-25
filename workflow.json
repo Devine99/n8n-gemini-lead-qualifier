@@ -1,0 +1,91 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "3c1a9edc-3dc7-470d-8a67-af3d9b2b2f30",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "ea4db574-2be5-4dd9-9be0-4aceb1c7040c",
+      "name": "Webhook",
+      "webhookId": "3c1a9edc-3dc7-470d-8a67-af3d9b2b2f30"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "SYSTEM INSTRUCTIONS:\nYou are an expert Sales Operations Manager. Analyze the incoming lead and output valid JSON only.\n\nSCORING RULES:\n1. Score (0-100): Based on budget intent, urgency, and fit.\n2. Category: \"Hot\", \"Warm\", \"Cold\", or \"Spam\".\n3. Summary: One sentence reasoning.\n4. Suggested_Reply: A polite email draft (max 100 words).\n\nSTRICT OUTPUT FORMAT (JSON ONLY):\n{\n  \"score\": 85,\n  \"category\": \"Hot\",\n  \"summary\": \"Reasoning here\",\n  \"suggested_reply\": \"Email draft here\"\n}\n\nUSER MESSAGE:\nAnalyze this new lead:\nName: Sarah Jenkins\nCompany: TechStart Inc.\nMessage: \"Hi, I need an AI automation consultant to help us automate our invoicing workflow. We have a budget of $5k and need this done by next month.\"",
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        416,
+        0
+      ],
+      "id": "e0aa282c-ea52-4a6a-b7cc-5bfa7366098d",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        624,
+        0
+      ],
+      "id": "2f66a1c1-b1d6-41fc-ada8-5f2a3c5b2a9f",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "GJPlh1nei3RaBKaG",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "8543dfc2-aec8-43e7-966d-a2d4face77e4",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0f7d4c171a4cc48a308cb546734a90ef249e07c9fb58f4d3d676f7348aeabeb7"
+  },
+  "id": "UX0orsWMppQn0Nmj",
+  "tags": []
+}
